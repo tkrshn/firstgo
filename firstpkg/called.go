@@ -5,5 +5,6 @@ import (
 )
 
 func Called(toke string) {
-	fmt.Printf("Passed from main: %s", toke)
+	tok := "this-" + toke + "-came from main"
+	fmt.Printf("Passed from main: %s", tok)
 }
