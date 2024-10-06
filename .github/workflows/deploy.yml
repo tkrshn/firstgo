@@ -1,0 +1,21 @@
+# start workflow on push or pull request
+
+name: Deploy
+
+on:
+    workflow_dispatch:
+        inputs:
+            force_deploy:
+                description: 'Force Deploy?'
+                required: true
+                type: boolean
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            # build a docker image
+            - name: Build Docker Image
+              run: docker build --build-arg GH_TOKEN=${{ secrets.GH_TOKEN }} -t docker-go-app:latest -f Dockerfile .
+            - name: Run Docker container
+              run: docker run docker-go-app:latest
