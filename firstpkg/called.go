@@ -4,6 +4,6 @@ import (
 	"fmt"
 )
 
-func Called(tok string) {
-	fmt.Println("Passed from main: ", tok)
+func Called(toke string) {
+	fmt.Printf("Passed from main: %s", toke)
 }
