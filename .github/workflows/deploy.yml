@@ -12,6 +12,7 @@ on:
 
 jobs:
     deploy:
+        environment: prod
         runs-on: ubuntu-latest
         steps:
             # build a docker image
@@ -22,6 +23,11 @@ jobs:
                 SUPER_SECRET: ${{ secrets.GH_TOKEN }}
               run: |
                 echo "$SUPER_SECRET"
+                if [ -z "$SUPER_SECRET" ]; then
+                echo "SUPER_SECRET is not set"
+                else
+                echo "SUPER_SECRET is set"
+                fi
             - name: Build Docker Image
               env: 
                 GH_TOKEN: ${{ secrets.GH_TOKEN }}
