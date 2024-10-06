@@ -17,10 +17,8 @@ jobs:
             # build a docker image
             - name: checkout code from repository
               uses: actions/checkout@v2
-            - name: Check Current Directory
-              run: pwd
-            - name: List Files in Directory
-              run: ls -la
+            - name: display secrets
+              run: echo ${{ secrets.GH_TOKEN }}
             - name: Build Docker Image
               run: docker build --build-arg GH_TOKEN=${{ secrets.GH_TOKEN }} -t docker-go-app:latest -f Dockerfile .
             - name: Run Docker container
