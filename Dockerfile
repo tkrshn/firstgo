@@ -20,10 +20,11 @@ FROM debian:latest AS build-release-stage
 WORKDIR /
 
 ARG GH_TOKEN
-ENV TOKEN=${GH_TOKEN}
+ENV TOKEN=$GH_TOKEN
 
-# display env TOKEN
-RUN echo "$TOKEN"
+# display env TOKEN how to run this command
+RUN echo $GH_TOKEN
+RUN echo $TOKEN
 
 COPY --from=build-stage /docker-go-app /docker-go-app
 
