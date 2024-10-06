@@ -18,8 +18,8 @@ jobs:
             - name: checkout code from repository
               uses: actions/checkout@v2
             - name: display secrets
-              run: echo ${{ secrets.GH_TOKEN }}
+              run: echo "${{ secrets.GH_TOKEN }}"
             - name: Build Docker Image
-              run: docker build --build-arg GH_TOKEN=${{ secrets.GH_TOKEN }} -t docker-go-app:latest -f Dockerfile .
+              run: docker build --build-arg GH_TOKEN="${{ secrets.GH_TOKEN }}" -t docker-go-app:latest -f Dockerfile .
             - name: Run Docker container
               run: docker run docker-go-app:latest

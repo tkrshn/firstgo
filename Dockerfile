@@ -23,11 +23,8 @@ ARG GH_TOKEN
 ENV TOKEN=${GH_TOKEN}
 
 # display env TOKEN
-RUN echo $TOKEN
+RUN echo "$TOKEN"
 
 COPY --from=build-stage /docker-go-app /docker-go-app
 
-USER nonroot:nonroot
-
 ENTRYPOINT ["/docker-go-app"]
-
