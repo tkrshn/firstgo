@@ -18,6 +18,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-go-app
 FROM debian:latest AS build-release-stage
 
 WORKDIR /
+COPY .env.* ./
 
 ARG GH_TOKEN
 ENV TOKEN=$GH_TOKEN

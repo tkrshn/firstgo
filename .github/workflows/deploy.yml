@@ -22,6 +22,6 @@ jobs:
             - name: Build Docker Image
               env: 
                 GH_TOKEN: ${{ secrets.GH_TOKEN }}
-              run: docker build --build-arg GH_TOKEN="${GH_TOKEN}" -t docker-go-app:latest -f Dockerfile .
-            - name: Run Docker container
-              run: docker run docker-go-app:latest --env-file .env.${{ env.ENVIRONMENT_NAME }}
+              run: |
+                docker build --build-arg GH_TOKEN="${GH_TOKEN}" -t docker-go-app:latest -f Dockerfile .
+                docker run docker-go-app:latest -env prod

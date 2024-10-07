@@ -17,6 +17,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-go-app
 FROM gcr.io/distroless/base-debian11 AS run-stage
 
 WORKDIR /
+COPY .env.* ./
 
 ARG GH_TOKEN
 ENV TOKEN=$GH_TOKEN
