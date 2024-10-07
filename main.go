@@ -1,16 +1,22 @@
 package main
 
 import (
-	"fmt"
-
 	"firstgo/firstpkg"
+	"fmt"
+	"os"
+
+	"flag"
 
 	"github.com/gobuffalo/envy"
 )
 
 func main() {
 
-	fmt.Println("Token in main: ", envy.Get("TOKEN", "default"))
-	toke := envy.Get("TOKEN", "default")
-	firstpkg.Called(toke)
+	env := flag.String("env", "prod", "Environment")
+	flag.Parse()
+	env_prod := ".env." + *env
+	envy.Load(env_prod)
+	bearer := "Bearer " + os.Getenv("TOKEN")
+	fmt.Println("Token in main: ", bearer)
+	firstpkg.Called(bearer, os.Getenv("DEL"), os.Getenv("MOD"))
 }
